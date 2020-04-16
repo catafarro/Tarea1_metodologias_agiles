@@ -31,3 +31,15 @@ class TestTodoEdit(TestCase):
         nuevat4.name = "tarea4"
         nuevat4.save()
         self.assertEqual(Todo.objects.get(name="tarea4").name, "tarea4")
+
+        
+class TestTodoCheck(TestCase):
+
+    def setUp(self):
+        Todo.objects.create(name="todo1")
+
+    def test(self):
+        aux = Todo.objects.get(name="todo1")
+        aux.checked = True
+        aux.save()
+        self.assertTrue(Todo.objects.get(name="todo1").checked)
